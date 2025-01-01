@@ -1,0 +1,4 @@
+ALTER TABLE tb_appointments 
+  DROP COLUMN due_date,
+  ADD COLUMN due_date VARCHAR(255) NOT NULL,
+  ADD COLUMN due_time VARCHAR(255) NOT NULL;
