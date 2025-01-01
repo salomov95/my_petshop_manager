@@ -1,0 +1,40 @@
+<table
+  th:fragment="appointment_list (title, period, list)"
+  class="main-content__list-card"
+>
+  <thead class="main-content__list-card-header">
+    <tr>
+      <th>
+        <img th:if="${title=='Manhã'}" th:src="@{/img/sun-fog.svg}" alt="sun-fog__icon" />
+        <img th:if="${title=='Tarde'}" th:src="@{/img/cloud-sun-4.svg}" alt="cloud-sun-4__icon" />
+        <img th:if="${title=='Noite'}" th:src="@{/img/moon-stars.svg}" alt="moon-stars__icon" />
+        <span th:text="${title}" />
+      </th>
+      <th />
+      <th th:text="${period}" />
+    </tr>
+  </thead>
+
+  <tbody th:if="${list.size()<=0}">
+    <tr class="empty-list">
+      <td class="link">Sem agendamentos marcados.</td>
+    </tr>
+  </tbody>
+
+  <tbody th:if="${list.size()>0}">
+    <tr th:each="item : ${list}" th:object="${item}">
+      <td th:text="*{dueTime}" />
+      <td>
+        <span th:text="*{petName}" />
+        <span>&nbsp;/&nbsp;</span>
+        <span th:text="*{petTutorName}" />
+      </td>
+      <td th:text="*{descriptor}" />
+      <td>
+        <form th:action="'/appointments/'+*{id}+'/cancel'" method="POST">
+          <button type="submit">Remover agendamento</button>
+        </form>
+      </td>
+    </tr>
+  </tbody>
+</table>
