@@ -1,6 +1,8 @@
 spring:
   application:
     name: mypet
+  profiles:
+    active: default
   jpa:
     show-sql: true
     hibernate:
