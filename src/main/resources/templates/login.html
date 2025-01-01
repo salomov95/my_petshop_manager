@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <div th:replace="~{partials/headers}" />
+    <link th:href="@{/css/login.css}" rel="stylesheet" />
+    <title>My Pet | Login</title>
+  </head>
+  <body>
+    <header th:replace="~{partials/header}" />
+
+    <main class="main-content__wrapper">
+      <div>
+        <h1 class="title">Welcome back!</h1>
+      </div>
+
+      <div class="form__wrapper">
+        <form
+          action="#"
+          th:action="@{/auth/login}"
+          th:object="${dto}"
+          method="POST"
+        >
+          <label class="passkey__input-wrapper">
+            <img th:src="@{/img/key-multiple.svg}" alt="key-multiple__icon" />
+            <input
+              type="password"
+              name="passkey"
+              placeholder="****************"
+            />
+          </label>
+        </form>
+      </div>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,59 @@
+<div class="modal__overlay">
+  <div class="modal__container">
+    <header class="modal__header">
+      <h1 class="title">Agende um atendimento</h1>
+      <span class="link">Preencha os dados do cliente para realizar o agendamento:</span>
+    </header>
+
+    <form class="modal__content">
+      <div class="field__wrapper">
+        <span>Nome do tutor</span>
+        <label class="input__wrapper">
+          <img th:src="@{/img/user.svg}" alt="user__icon" />
+          <input name="petTutorName" placeholder="John Doe" />
+        </label>
+      </div>
+
+      <div class="field__wrapper">
+        <span>Nome do pet</span>
+        <label class="input__wrapper">
+          <img th:src="@{/img/pet-paw.svg}" alt="pet-paw__icon" />
+          <input name="petName" placeholder="Caramelo" />
+        </label>
+      </div>
+
+      <div class="field__wrapper">
+        <span>Telefone</span>
+        <label class="input__wrapper">
+          <img th:src="@{/img/phone.svg}" alt="phone__icon" />
+          <input name="contactPhone" placeholder="(99) 9-9999-9999" />
+        </label>
+      </div>
+
+      <div class="field__wrapper">
+        <span>Descrição do serviço</span>
+        <textarea name="descriptor" placeholder="Banho e Tosa" />
+      </div>
+
+      <div class="field__wrapper">
+        <span>Data</span>
+        <label class="input__wrapper">
+          <img th:src="@{/img/calendar-minimalistic.svg}" alt="calendar-minimalistic__icon" />
+          <input type="date" name="dueDate" />
+        </label>
+      </div>
+
+      <div class="field__wrapper">
+        <span>Hora</span>
+        <label class="input__wrapper">
+          <img th:src="@{/img/clock-circle.svg}" alt="clock-circle__icon" />
+          <input type="time" name="dueTime" />
+        </label>
+      </div>
+
+      <div class="modal__footer">
+        <button class="modal_submit-btn" type="submit">AGENDAR</button>
+      </div>
+    </form>
+  </div>
+</div>

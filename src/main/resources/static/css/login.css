@@ -1,0 +1,75 @@
+@import "globals.css";
+
+body {
+  height: 100%;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.main-content__wrapper {
+  width: 100%;
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 16px;
+  align-items: center;
+  justify-content: center;
+
+  & > div {
+    width: 100%;
+    max-width: 300px;
+
+    & > h1 {
+      text-align: left;
+      color: var(--ctnt-primary);
+    }
+  }
+
+  & .form__wrapper {
+    height: 100%;
+    width: 100%;
+
+    max-width: 300px;
+    max-height: 200px;
+
+    padding: 16px 24px;
+    border-radius: 12px;
+
+    background-color: var(--bg-ternary);
+
+    & > form {
+      width: 100%;
+      height: 100%;
+
+      display: grid;
+      place-items: center;
+    }
+  }
+}
+
+.passkey__input-wrapper {
+  height: 32px;
+  width: 100%;
+  border-radius: 8px;
+
+  display: flex;
+  gap: 16px;
+
+  border: 1px solid var(--brd-primary);
+
+  &:focus-within {
+    border-width: 0px;
+    outline: 2px solid var(--brd-brand);
+  }
+
+  & > input {
+    flex: 1;
+    height: 100%;
+    color: var(--ctnt-secondary);
+  }
+}

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <div th:replace="~{partials/headers}" />
+
+    <link th:href="@{/css/main.css}" rel="stylesheet" />
+    <link defer th:href="@{/js/filter.js}" />
+
+    <title>My Pet</title>
+  </head>
+  <body>
+    <main class="main-content__wrapper">
+      <header th:replace="~{partials/header}" />
+
+      <div class="main-content__list">
+        <div class="main-content__list-header">
+          <h1 class="title">Sua agenda</h1>
+          <span class="paragraph-small">Aqui você pode ver todos os seus clientes e serviços agendados para o dia selecionado.</span>
+          <label class="filter input__wrapper">
+            <img th:src="@{/img/calendar-minimalistic.svg}" alt="calendar__svg-icon" />
+            <input
+              type="date"
+              id="filter_date"
+              name="filter_date"
+              th:value="${filter_date}"
+            />
+          </label>
+        </div>
+
+        <div class="main-content__list-body">
+          <div th:replace="~{partials/appointment_list :: appointment_list(title='Manhã', period='08h-12h', list=${morning})}" />
+          <div th:replace="~{partials/appointment_list :: appointment_list(title='Tarde', period='13h-17h', list=${afternoon})}" />
+          <div th:replace="~{partials/appointment_list :: appointment_list(title='Noite', period='18h-22h', list=${night})}" />
+        </div>
+
+        <div class="main-content__list-footer">
+          <button type="button" class="label-large">NOVO AGENDAMENTO</button>
+        </div>
+      </div>
+    </main>
+
+    <!--div th:replace="~{partials/create-appointment-modal}" /-->
+  </body>
+</html>

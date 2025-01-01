@@ -1,0 +1,256 @@
+@import "globals.css";
+
+body {
+  height: 100%;
+  width: 100%;
+  color: var(--ctnt-primary);
+}
+
+button {
+  border-radius: 8px;
+  padding: 16px;
+
+  background-color: var(--bg-brand);
+  color: var(--bg-primary);
+
+  transition: background-color 500ms ease;
+
+  &:active, &:hover {
+    background-color: var(--bg-highlight);
+    color: var(--bg-ternary);
+  }
+}
+
+.main__content-wrapper {
+  height: 100%;
+  width: 100%;
+  padding-inline: 16px;
+}
+
+.main-content__list {
+  width: 100%;
+  max-width: 728px;
+
+  padding: 16px;
+  margin-inline: auto;
+
+  &-footer {
+    width: 100%;
+    margin-top: 20px;
+
+    display: flex;
+    justify-content: flex-end;
+
+    & > button {
+      max-width: 152px;
+    }
+  }
+}
+
+.input__wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+
+  border-radius: 4px;
+  border: 1px solid var(--ctnt-primary);
+
+  &:focus-within {
+    border-width: 0px;
+    outline: 2px solid var(--brd-brand);
+  }
+
+  & > input {
+    height: 100%;
+    flex: 1;
+
+    background-color: var(--bg-primary);
+    color: var(--ctnt-primary);
+  }
+}
+
+.main-content__list-header {
+  margin-top: 48px;
+  width: 100%;
+
+  display: grid;
+  grid-template-areas: "title title title input"
+                       "text text text input";
+  & > span {
+    grid-area: text;
+    color: var(--ctnt-secondary);
+  }
+
+  & > h1 {
+    grid-area: title;
+  }
+
+  & > .filter {
+    grid-area: input;
+
+    height: 30px;
+    max-width: 136px;
+    padding-inline: 8px;
+  }
+}
+
+.main-content__list-body {
+  margin-top: 8px;
+
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.main-content__list-card { /* its a table */
+  width: 100%;
+  padding-inline: 24px;
+
+  background-color: var(--bg-ternary);
+  border-radius: 16px;
+
+  & > tbody, & > thead {
+    width: 100%;
+
+    & > tr {
+      width: 100%;
+
+      display: flex;
+      gap: 16px;
+    }
+  }
+
+  & thead tr {
+    padding: 16px 0;
+
+    & th:first-child {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+  }
+
+  & tbody tr {
+    padding: 24px 0;
+
+    &.empty-list {
+      width: 100%;
+
+      td {
+        width: 100%;
+        text-align: center;
+        color: var(--ctnt-ternary);
+      }
+    }
+  }
+
+  & thead tr,
+  & tbody tr:not(:last-child) {
+    border-bottom: 1px solid var(--brd-primary);
+  }
+
+  & thead tr th:nth-of-type(2),
+  & tbody tr td:nth-of-type(3) {
+    flex: 1;
+  }
+
+  & td:nth-child(3) {
+    text-align: center;
+  }
+
+  & td > span:not(:first-child),
+  & td:nth-child(3),
+  & thead tr th:last-child {
+    color: var(--ctnt-secondary);
+  }
+
+  & button {
+    background-color: var(--bg-ternary);
+    color: var(--ctnt-ternary);
+  }
+}
+
+.modal {
+  &-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    background-color: #00000080;
+
+    display: grid;
+    place-items: center;
+  }
+
+  &-container {
+    width: 100%;
+    max-height: 80vh;
+    max-width: 80vw;
+
+    border-radius: 24px;
+
+    background-color: var(--bg-ternary);
+
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    & > .modal__header {
+      width: 100%;
+
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+
+      text-align: left;
+    }
+  }
+
+  &-content {
+    & .field__wrapper {
+      width: 100%;
+
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+  }
+}
+
+@media(max-width:748px) {
+  .main-content__list-card > tbody > tr {
+    display: grid;
+    grid-template-areas: "time desc desc button"
+                         "pet pet pet pet";
+
+    &.empty-list {
+      display: flex;
+
+      & td {
+        flex: 1;
+        text-align: center;
+        color: var(--ctnt-ternary);
+      }
+    }
+
+    & > td:nth-child(2) {
+      text-align: left;
+      grid-area: pet;
+    }
+
+    & > td:first-child {
+      grid-area: time;
+    }
+
+    & > td:nth-child(3) {
+      grid-area: desc;
+      text-align: left;
+    }
+
+    & > td:last-child {
+      grid-area: button;
+    }
+  }
+}
