@@ -11,12 +11,23 @@ button {
 
   background-color: var(--bg-brand);
   color: var(--bg-primary);
+}
 
-  transition: background-color 500ms ease;
+textarea {
+  width: 100%;
+  height: 64px;
 
-  &:active, &:hover {
-    background-color: var(--bg-highlight);
-    color: var(--bg-ternary);
+  border-radius: 4px;
+  border: 1px solid var(--ctnt-primary);
+
+  background-color: var(--bg-primary);
+  color: var(--ctnt-primary);
+
+  padding: 8px;
+
+  &:focus {
+    border-width: 0px;
+    outline: 2px solid var(--brd-brand);
   }
 }
 
@@ -175,49 +186,126 @@ button {
   }
 }
 
-.modal {
-  &-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
+.modal__overlay {
+  height: 100%;
+  width: 100%;
 
-    background-color: #00000080;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  background-color: #00000020;
+  backdrop-filter: blur(10px);
+
+  display: grid;
+  place-items: center;
+}
+
+.modal__container {
+  width: 80vw;
+  max-width: 400px;
+
+  border-radius: 24px;
+  padding: 20px;
+
+  background-color: var(--bg-ternary);
+
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  & > .modal__header {
+    width: 100%;
 
     display: grid;
-    place-items: center;
-  }
+    grid-template-areas: "title title title btn"
+                         "sub sub sub .";
 
-  &-container {
-    width: 100%;
-    max-height: 80vh;
-    max-width: 80vw;
-
-    border-radius: 24px;
-
-    background-color: var(--bg-ternary);
-
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-
-    & > .modal__header {
-      width: 100%;
-
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-
+    & > h1 {
+      grid-area: title;
       text-align: left;
+    }
+
+    & > span {
+      grid-area: sub;
+      text-align: justify;
+      color: var(--ctnt-ternary);
+    }
+
+    & button {
+      background: transparent;
+      padding: 4px;
+
+      grid-area: btn;
+
+      & > img {
+        height: 20px;
+        width: 20px;
+      }
     }
   }
 
-  &-content {
-    & .field__wrapper {
+  & > .modal__content {
+    width: 100%;
+
+    display: grid;
+    gap: 8px;
+
+    grid-template-areas: "tutor tutor"
+                         "pet pet"
+                         "phone phone"
+                         "desc desc"
+                         "date time"
+                         "footer footer";
+
+    & > .field__wrapper {
       width: 100%;
 
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 8px;
+
+      & > .input__wrapper {
+        padding: 8px;
+      }
+
+      & input, textarea {
+        width: 100%;
+        background-color: var(--bg-ternary);
+      }
+
+      &:has(input[name="petTutorName"]) {
+        grid-area: tutor;
+      }
+
+      &:has(input[name="petName"]) {
+        grid-area: pet;
+      }
+
+      &:has(input[name="contactPhone"]) {
+        grid-area: phone;
+      }
+
+      &:has(textarea) {
+        grid-area: desc;
+      }
+
+      &:has(input[name="dueDate"]) {
+        grid-area: date;
+      }
+
+      &:has(input[name="dueTime"]) {
+        grid-area: time;
+      }
+    }
+
+    & > .modal__footer {
+      grid-area: footer;
+
+      & > button {
+        padding: 16px;
+        margin-left: auto;
+      }
     }
   }
 }
@@ -255,5 +343,10 @@ button {
     & > td:last-child {
       grid-area: button;
     }
+  }
+
+  .modal__content {
+    display: flex;
+    flex-direction: column;
   }
 }
