@@ -1,17 +1,17 @@
 <div class="modal__overlay hidden">
   <div class="modal__container">
     <header class="modal__header">
-      <button type="button" id="close-modal-btn">
-        <img src="@{/img/x-icon.svg}" alt="x" />
-      </button>
-      
       <h1 class="title">Agende um atendimento</h1>
       <span class="link">Preencha os dados do cliente para realizar o agendamento:</span>
+
+      <button type="button" id="close-modal-btn">
+        <img th:src="@{/img/exit.svg}" alt="exit__icon" />
+      </button>
     </header>
 
     <form class="modal__content">
       <div class="field__wrapper">
-        <span>Nome do tutor</span>
+        <span class="label-medium">Nome do tutor</span>
         <label class="input__wrapper">
           <img th:src="@{/img/user.svg}" alt="user__icon" />
           <input name="petTutorName" placeholder="John Doe" />
@@ -19,7 +19,7 @@
       </div>
 
       <div class="field__wrapper">
-        <span>Nome do pet</span>
+        <span class="label-medium">Nome do pet</span>
         <label class="input__wrapper">
           <img th:src="@{/img/pet-paw.svg}" alt="pet-paw__icon" />
           <input name="petName" placeholder="Caramelo" />
@@ -27,7 +27,7 @@
       </div>
 
       <div class="field__wrapper">
-        <span>Telefone</span>
+        <span class="label-medium">Telefone</span>
         <label class="input__wrapper">
           <img th:src="@{/img/phone.svg}" alt="phone__icon" />
           <input name="contactPhone" placeholder="(99) 9-9999-9999" />
@@ -35,12 +35,12 @@
       </div>
 
       <div class="field__wrapper">
-        <span>Descrição do serviço</span>
-        <textarea name="descriptor" placeholder="Banho e Tosa" />
+        <span class="label-medium">Descrição do serviço</span>
+        <textarea name="descriptor" placeholder="Banho e Tosa"></textarea>
       </div>
 
       <div class="field__wrapper">
-        <span>Data</span>
+        <span class="label-medium">Date</span>
         <label class="input__wrapper">
           <img th:src="@{/img/calendar-minimalistic.svg}" alt="calendar-minimalistic__icon" />
           <input type="date" name="dueDate" />
@@ -48,7 +48,7 @@
       </div>
 
       <div class="field__wrapper">
-        <span>Hora</span>
+        <span class="label-medium">Hora</span>
         <label class="input__wrapper">
           <img th:src="@{/img/clock-circle.svg}" alt="clock-circle__icon" />
           <input type="time" name="dueTime" />
@@ -56,7 +56,7 @@
       </div>
 
       <div class="modal__footer">
-        <button class="modal_submit-btn" type="submit">AGENDAR</button>
+        <button class="modal_submit-btn label-medium" type="submit">AGENDAR</button>
       </div>
     </form>
   </div>

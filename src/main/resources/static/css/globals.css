@@ -39,6 +39,14 @@ html {
   font-family: "Inter", sans-serif;
 }
 
+button {
+  transition: all 500ms ease;
+
+  &:active, &:hover {
+    filter: brightness(80%);
+  }
+}
+
 input {
   border: none;
   outline: none;
