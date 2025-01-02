@@ -8,7 +8,6 @@ body {
 
 button {
   border-radius: 8px;
-  padding: 16px;
 
   background-color: var(--bg-brand);
   color: var(--bg-primary);
@@ -19,6 +18,10 @@ button {
     background-color: var(--bg-highlight);
     color: var(--bg-ternary);
   }
+}
+
+.hidden {
+  display: none;
 }
 
 .main__content-wrapper {
@@ -33,17 +36,17 @@ button {
 
   padding: 16px;
   margin-inline: auto;
+}
 
-  &-footer {
-    width: 100%;
-    margin-top: 20px;
+.main-content__list-footer {
+  width: 100%;
+  margin-top: 20px;
 
-    display: flex;
-    justify-content: flex-end;
+  display: flex;
+  justify-content: flex-end;
 
-    & > button {
-      max-width: 152px;
-    }
+  & > button {
+    padding: 16px;
   }
 }
 
