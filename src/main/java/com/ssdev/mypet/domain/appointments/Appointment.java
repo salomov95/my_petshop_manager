@@ -38,6 +38,9 @@ public class Appointment {
   @Column(name="contact_phone")
   private String contactPhone;
 
+  @Column(nullable=false)
+  private String status;
+
   public Appointment(CreateAppointmentDto dto) {
     descriptor = dto.descriptor();
     petTutorName = dto.petTutorName();
@@ -45,5 +48,6 @@ public class Appointment {
     dueDate = dto.dueDate();
     dueTime = dto.dueTime();
     contactPhone = dto.contactPhone();
+    status = "APPOINTMENTS.PENDING";
   }
 }

@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -60,12 +61,27 @@ public class AppointmentsController {
     model.addAttribute("afternoon", afternoon);
     model.addAttribute("night", night);
 
+    CreateAppointmentDto dto = new CreateAppointmentDto("", "", "", TODAY, LocalTime.now(), "");
+    model.addAttribute("dto", dto);
+
     return "index";
   }
 
+  @PostMapping(path={"/appointments"}, consumes={MediaType.APPLICATION_FORM_URLENCODED_VALUE})
+  public String createAppointment(CreateAppointmentDto dto) {
+    this.service.createAppointment(dto);
+    return "redirect:/";
+  }
+
   @PostMapping("/appointments/{id}/cancel")
-  public String deleteAppointments(@PathVariable String id) {
-    this.logger.info("[DEBUG] Canceling Appointment: {} ✓", id);
+  public String cancelAppointments(@PathVariable String id) {
+    try {
+      this.service.cancelAppointment(id);
+    } catch(Exception e) {
+      logger.error("[ERROR] " + e.getMessage());
+      return "redirect:/not-found";
+    }
+
     return "redirect:/";
   }
 }
