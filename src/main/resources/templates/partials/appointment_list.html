@@ -38,8 +38,8 @@
         <form th:if="*{status == 'APPOINTMENTS.PENDING'}" th:action="'/appointments/'+*{id}+'/cancel'" method="POST">
           <button type="submit">Remover agendamento</button>
         </form>
-        <span th:if="*{status == 'APPOINTMENTS.CANCELLED'}" class="status--cancelled">CANCELLED</span>
-        <span th:if="*{status == 'APPOINTMENTS.ATTENDED'}" class="status--attended">COMPARECEU</span>
+        <span th:if="*{status == 'APPOINTMENTS.CANCELLED'}" class="paragraph-medium status--cancelled">Cancelou</span>
+        <span th:if="*{status == 'APPOINTMENTS.ATTENDED'}" class="paragraph-medium status--attended">Compareceu</span>
       </td>
     </tr>
   </tbody>

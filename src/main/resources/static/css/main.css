@@ -148,23 +148,20 @@ textarea {
     padding: 24px 0;
 
     &.empty-list {
-      width: 100%;
-
       td {
-        width: 100%;
         text-align: center;
         color: var(--ctnt-ternary);
       }
     }
 
     &.not-pending {
-      filter: brightness(0.78);
+      filter: brightness(0.68);
 
-      & > td.status--cancelled {
+      & > td > .status--cancelled {
         color: red;
       }
 
-      & > td.status--attended {
+      & > td > .status--attended {
         color: green;
       }
     }
@@ -193,6 +190,10 @@ textarea {
   & button {
     background-color: var(--bg-ternary);
     color: var(--ctnt-ternary);
+
+    &:active, &:hover {
+      color: var(--ctnt-brand);
+    }
   }
 }
 

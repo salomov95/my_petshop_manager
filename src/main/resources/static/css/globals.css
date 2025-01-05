@@ -98,36 +98,32 @@ header {
   line-height: 16px;
 }
 
-.paragraph {
-  &-medium {
-    font-weight: medium;
-    font-size: 14px;
-    line-height: 24px;
-  }
-
-  &-small {
-    font-weight: medium;
-    font-size: 12px;
-    line-height: 16px;
-  }
+.paragraph-medium {
+  font-weight: medium;
+  font-size: 14px;
+  line-height: 24px;
 }
 
-.label {
-  &-small {
-    font-weight: bold;
-    font-size: 12px;
-    line-height: 16px;
-  }
+.paragraph-small {
+  font-weight: medium;
+  font-size: 12px;
+  line-height: 16px;
+}
 
-  &-medium {
-    font: bold;
-    font-size: 14px;
-    line-height: 24px;
-  }
+.label-small {
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 16px;
+}
 
-  &-large {
-    font-weight: bold;
-    font-size: 16px;
-    line-height: 24px;
-  }
+.label-medium {
+  font: bold;
+  font-size: 14px;
+  line-height: 24px;
+}
+
+.label-large {
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 24px;
 }

@@ -34,7 +34,7 @@ body {
     height: fit-content;
     width: fit-content;
 
-    padding: 16px 24px;
+    padding: 32px;
     border-radius: 12px;
 
     background-color: var(--bg-ternary);
