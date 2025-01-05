@@ -4,12 +4,18 @@
       <h1 class="title">Agende um atendimento</h1>
       <span class="link">Preencha os dados do cliente para realizar o agendamento:</span>
 
-      <button type="button" id="close-modal-btn">
+      <button type="button" id="close-modal-btn" th:onclick="closeModal()">
         <img th:src="@{/img/exit.svg}" alt="exit__icon" />
       </button>
     </header>
 
-    <form class="modal__content">
+    <form
+      class="modal__content"
+      action="#"
+      th:action="@{/appointments}"
+      th:object="${dto}"
+      method="POST"
+    >
       <div class="field__wrapper">
         <span class="label-medium">Nome do tutor</span>
         <label class="input__wrapper">

@@ -7,37 +7,42 @@ INSERT INTO tb_appointments (
   descriptor,
   due_date,
   due_time,
-  contact_phone
+  contact_phone,
+  status
 ) VALUES (
-  'jqdiw-baidhwis-hwidejeb-9qbdei-w9dhdnrntigia',
+  '4ad3a58a-5d57-4800-b649-96d58c6f4923',
   'MION',
   'Salomov M.',
   'Vermifugaçao',
-  '2024-12-31',
+  '2025-01-05',
   '14:56:00',
-  '(92) 9-9482-5428'
+  '(92) 9-9482-5428',
+  'APPOINTMENTS.PENDING'
 ), (
-  'ahUeg-s7wHahdk-jqY6sai2-jH4ABw-jw9j8Huw34Jka',
+  '65d12e17-27ae-4caa-ad74-1697abaab55b',
   'PLUTO',
   'John D.',
   'Vacinação',
-  '2024-12-31',
+  '2025-01-05',
   '13:24:00',
-  '(92) 9-9542-1015'
+  '(92) 9-9542-1015',
+  'APPOINTMENTS.PENDING'
 ), (
-  'jquY9-ajgYvwy4-qjYahw&2-ajHga3-jwYgaw#$ahq6a',
+  '65782408-4e28-4c1f-ad3d-43c1598b95c2',
   'MUSTAFFA',
   'Jhanette D.',
   'Banho e Tosa',
-  '2024-12-31',
+  '2025-01-05',
   '09:35:00',
-  '(92) 9-9422-7530'
+  '(92) 9-9422-7530',
+  'APPOINTMENTS.CANCELLED'
 ), (
-  'wihA3-wifuajH1-uaHhweu#-Y&sbsh-hdsiHs2h#Ujea',
+  'bfe00f2f-a5e4-4b63-8fe0-6e7e0c94705d',
   'ENTROPIA',
   'P. H. Pedro',
   'Banho e Tosa',
-  '2024-12-31',
+  '2025-01-05',
   '18:15:00',
-  '(92) 9-8155-1325'
+  '(92) 9-8155-1325',
+  'APPOINTMENTS.ATTENDED'
 );
