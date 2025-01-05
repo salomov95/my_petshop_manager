@@ -31,14 +31,12 @@ textarea {
   }
 }
 
-.hidden {
-  display: none;
-}
-
 .main__content-wrapper {
   height: 100%;
   width: 100%;
   padding-inline: 16px;
+
+  z-index: 10;
 }
 
 .main-content__list {
@@ -158,6 +156,18 @@ textarea {
         color: var(--ctnt-ternary);
       }
     }
+
+    &.not-pending {
+      filter: brightness(0.78);
+
+      & > td.status--cancelled {
+        color: red;
+      }
+
+      & > td.status--attended {
+        color: green;
+      }
+    }
   }
 
   & thead tr,
@@ -187,18 +197,22 @@ textarea {
 }
 
 .modal__overlay {
-  height: 100%;
-  width: 100%;
+  height: 100vh;
+  width: 100vw;
 
   position: absolute;
   top: 0;
   left: 0;
 
   background-color: #00000020;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(5px);
 
   display: grid;
   place-items: center;
+
+  &.hidden {
+    display: none;
+  }
 }
 
 .modal__container {

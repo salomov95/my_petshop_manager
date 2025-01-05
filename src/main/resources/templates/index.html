@@ -4,7 +4,6 @@
     <div th:replace="~{partials/headers}" />
 
     <link th:href="@{/css/main.css}" rel="stylesheet" />
-    <script defer th:src="@{/js/index.js}"></script>
 
     <title>My Pet</title>
   </head>
@@ -34,13 +33,21 @@
         </div>
 
         <div class="main-content__list-footer">
-          <button id="open-modal-btn" type="button" class="label-large">NOVO AGENDAMENTO</button>
+          <button
+            id="open-modal-btn"
+            type="button"
+            class="label-large"
+            th:onclick="openModal()"
+          >
+            NOVO AGENDAMENTO
+          </button>
         </div>
       </div>
     </main>
 
     <div th:replace="~{partials/create-appointment-modal}" />
     
+    <script th:src="@{/js/index.js}"></script>
     <script th:src="@{/js/eruda.js}"></script>
   </body>
 </html>

@@ -22,7 +22,11 @@
   </tbody>
 
   <tbody th:if="${list.size()>0}">
-    <tr th:each="item : ${list}" th:object="${item}">
+    <tr
+      th:each="item : ${list}"
+      th:object="${item}"
+      th:class="*{status != 'APPOINTMENTS.PENDING' ? 'not-pending' :  ''}"
+    >
       <td th:text="*{dueTime}" />
       <td>
         <span th:text="*{petName}" />
@@ -31,9 +35,11 @@
       </td>
       <td th:text="*{descriptor}" />
       <td>
-        <form th:action="'/appointments/'+*{id}+'/cancel'" method="POST">
+        <form th:if="*{status == 'APPOINTMENTS.PENDING'}" th:action="'/appointments/'+*{id}+'/cancel'" method="POST">
           <button type="submit">Remover agendamento</button>
         </form>
+        <span th:if="*{status == 'APPOINTMENTS.CANCELLED'}" class="status--cancelled">CANCELLED</span>
+        <span th:if="*{status == 'APPOINTMENTS.ATTENDED'}" class="status--attended">COMPARECEU</span>
       </td>
     </tr>
   </tbody>

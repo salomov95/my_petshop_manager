@@ -31,11 +31,8 @@ body {
   }
 
   & .form__wrapper {
-    height: 100%;
-    width: 100%;
-
-    max-width: 300px;
-    max-height: 200px;
+    height: fit-content;
+    width: fit-content;
 
     padding: 16px 24px;
     border-radius: 12px;
