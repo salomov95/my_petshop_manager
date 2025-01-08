@@ -2,7 +2,7 @@ spring:
   application:
     name: mypet
   profiles:
-    active: default
+    active: dev
   jpa:
     show-sql: true
     hibernate:
@@ -12,3 +12,5 @@ spring:
     username: my_pet
     password: myPet@123
     url: jdbc:mysql://localhost:3306/my_pet
+  session:
+    store-type: jdbc

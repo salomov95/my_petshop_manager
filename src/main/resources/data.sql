@@ -1,5 +1,7 @@
 DELETE FROM tb_appointments WHERE 1+1;
 
+DELETE FROM tb_users WHERE 1+1;
+
 INSERT INTO tb_appointments (
   id,
   pet_name,
@@ -45,4 +47,10 @@ INSERT INTO tb_appointments (
   '18:15:00',
   '(92) 9-8155-1325',
   'APPOINTMENTS.ATTENDED'
+);
+
+INSERT INTO tb_users (id, username, password)  VALUES (
+  "192feaf5-7fd0-28de-3afd-18a87dadf82f",
+  "salomovs95",
+  "$2a$12$g.edMMvLLTODGkTavD/4GOKc/V/vS7rF4pcGfX38ycrSOFqPeVuny"
 );
