@@ -1,16 +1,17 @@
 <div align="center">
   <br />
     <a href="#" target="_blank">
-      <img src="https://github.com/orafael-almeida/readme-projects-template/blob/main/images/banner.png?raw=true" alt="Project Banner">
+      <img src="https://github.com/user-attachments/assets/6cfe12ce-1e1a-428d-8037-90e67e12a66e" alt="Project Banner">
     </a>
   <br />
 
-  <!--div>
-    <img src="https://img.shields.io/badge/-Next_JS-black?style=for-the-badge&logoColor=white&logo=next.js&color=black" alt="Next;js" />
-    <img src="https://img.shields.io/badge/-React_JS-black?style=for-the-badge&logoColor=white&logo=react&color=61DAFB" alt="React.js" />
-    <img src="https://img.shields.io/badge/-Node_js-black?style=for-the-badge&logoColor=white&logo=node.js&color=6DA55F" alt="Node.js" />
-    <img src="https://img.shields.io/badge/-Tailwind_CSS-black?style=for-the-badge&logoColor=white&logo=tailwindcss&color=06B6D4" alt="TailwindCSS" />
-  </div-->
+  <div>
+    <img src="https://img.shields.io/badge/Spring%20Boot-6DB33F?logo=springboot&logoColor=fff&style=for-the-badge" alt="Java" />
+    <img src="https://img.shields.io/badge/Thymeleaf-%23005C0F.svg?style=for-the-badge&logo=Thymeleaf&logoColor=white" alt="Thymeleaf" />
+    <img src="https://img.shields.io/badge/MySQL-4479A1?logo=mysql&logoColor=fff&style=for-the-badge" alt="MySQL" />
+    <img src="https://img.shields.io/badge/Flyway-CC0200?logo=flyway&logoColor=fff&style=for-the-badge" alt="Flyway" />
+    <img src="https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=fff&style=for-the-badge" alt="Docker" />
+  </div>
 <br/><br/></br>
  
   <h1 align="center">My PetShop Manager</h1>
@@ -55,45 +56,45 @@
 - Thymeleaf
 - Hibernate / JPA
 - MySQL
+- Docker - Soon ..
 
 
 ## <a name="quick-start">💻 Quick Start</a>
 
-- TBD
-
-<!--Follow these steps to set up the project locally on your machine.
+Follow these steps to set up the project locally on your machine.
 
 **00 - Prerequisites**
 
 To use this project you must have previously installed the following packages:
 
 - [Git](https://git-scm.com/)
-- [Node.js](https://nodejs.org/en)
-- [npm](https://www.npmjs.com/) (Node Package Manager or similar)
+- [Java JDK or Open-JDK](https://openjdk.org/) - Version 17 or above
+- [Maven](https://maven.apache.org) (Build Manager)
+- [Docker](https://www.docker.com/) For Future Releases
 
 **01 - Cloning the Repository**
 
 ```bash
-git clone https://github.com/orafael-almeida/readme-projects-template
-cd readme-projects-template
+git clone https://github.com/salomov95/my_petshop_manager
+cd my-petshop-manager
 ```
 
 **02 - Installation**
 
-Install/Update the project dependencies using npm:
+Install/Update the project dependencies using maven global installation or local mvnw:
 
 ```bash
-npm install
+./mvnw clean install
 ```
 
 **03 - Running the Project**
 
 ```bash
-npm run dev
+./mvnw clean spring-boot:run
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser to view the project.
-Please, check the port.-->
+Open [http://localhost:8080](http://localhost:8080) in your browser to view the project.
+Please, check the port.
 
 ## <a name="envs">💾 Environment Variables</a>
 
