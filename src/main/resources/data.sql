@@ -49,7 +49,7 @@ INSERT INTO tb_appointments (
   'APPOINTMENTS.ATTENDED'
 );
 
-INSERT INTO tb_users (id, username, passkey)  VALUES (
+INSERT INTO tb_users (id, username, password)  VALUES (
   "192feaf5-7fd0-28de-3afd-18a87dadf82f",
   "salomovs95",
   "$2a$12$g.edMMvLLTODGkTavD/4GOKc/V/vS7rF4pcGfX38ycrSOFqPeVuny"
