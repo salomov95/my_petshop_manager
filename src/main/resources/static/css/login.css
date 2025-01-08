@@ -45,6 +45,13 @@ body {
 
       display: grid;
       place-items: center;
+
+      gap: 16px;
+    }
+
+    & .form__warn {
+      margin-top: 4px;
+      color: var(--form-warn);
     }
   }
 }
