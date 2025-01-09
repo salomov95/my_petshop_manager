@@ -59,6 +59,7 @@ body {
 .passkey__input-wrapper {
   height: 32px;
   width: 100%;
+  padding: 4px;
   border-radius: 8px;
 
   display: flex;

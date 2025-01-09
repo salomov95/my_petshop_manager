@@ -14,22 +14,28 @@
       </div>
 
       <div class="form__wrapper">
+        <div th:if="${param.logout}" class="label-small form__warn">Logout Successfully.</div>
+
         <form
-          action="#"
-          th:action="@{/auth/login}"
+          th:action="@{/login}"
           th:object="${dto}"
           method="POST"
         >
           <label class="passkey__input-wrapper">
+            <img th:src="@{/img/user.svg}" alt="user__icon" />
+            <input name="username" placeholder="john_doe@2077" />
+          </label>
+
+          <label class="passkey__input-wrapper">
             <img th:src="@{/img/key-multiple.svg}" alt="key-multiple__icon" />
-            <input
-              type="password"
-              name="passkey"
-              placeholder="****************"
-            />
+            <input type="password" name="password" placeholder="****************" />
           </label>
         </form>
+        
+        <div th:if="${param.error}" class="label-small form__warn">Credenciais Inválidas.</div>
       </div>
     </main>
+
+    <script th:src="@{/js/eruda.js}"></script>
   </body>
 </html>
