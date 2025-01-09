@@ -1,3 +1,3 @@
 package com.ssdev.mypet.domain.auth;
 
-public record AuthLoginDto (String passkey) {}
+public record AuthLoginDto (String username, String password) {}
