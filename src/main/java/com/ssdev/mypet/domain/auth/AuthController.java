@@ -1,5 +1,7 @@
 package com.ssdev.mypet.domain.auth;
 
+import java.security.Principal;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
@@ -9,9 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import jakarta.servlet.http.HttpSession;
-
-@Controller @RequestMapping("/auth")
+@Controller @RequestMapping
 public class AuthController {
   private Logger logger;
 
@@ -23,15 +23,16 @@ public class AuthController {
   }
 
   @GetMapping("/login")
-  public String login(Model model) {
-    AuthLoginDto dto = new AuthLoginDto("", "");
-    model.addAttribute("dto", dto);
+  public String login(Principal principal) {
+    if (principal != null) {
+      return "redirect:/";
+    }
+
     return "login";
   }
 
   @GetMapping("/signup")
-  public String signup(Model model, HttpSession session) {
-    logger.info("[DEBUG] Session", session.getId());
+  public String signup(Model model) {
     AuthRegisterDto dto = new AuthRegisterDto("");
     model.addAttribute("dto", dto);
     return "signup";
@@ -39,14 +40,13 @@ public class AuthController {
 
   @PostMapping(path={"/signup"}, consumes={MediaType.APPLICATION_FORM_URLENCODED_VALUE})
   public String signUp(AuthRegisterDto dto) {
-    logger.info(String.format("[DEBUG] Username provided: %s",dto.username()));
     try {
       String rawNewPasskey = service.createUser(dto.username());
-      logger.info("[INFO] User Created With Passkey: " + rawNewPasskey);
+      logger.info("User Created With Passkey: " + rawNewPasskey);
     } catch(Exception e) {
-      logger.error("[ERROR] Attempt To Register Failed", e);
-      return "redirect:/auth/signup?error=true";
+      logger.error("Attempt To Register Failed", e);
+      return "redirect:/signup?error=true";
     }
-    return "redirect:/auth/login";
+    return "redirect:/login";
   }
 }
