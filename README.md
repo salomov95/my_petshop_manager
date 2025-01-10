@@ -112,8 +112,6 @@ Please, check the port.
 
 ## <a name="envs">💾 Environment Variables</a>
 
-- TBD
-
 <details>
 <summary><code>aplication.yml</code></summary>
 
