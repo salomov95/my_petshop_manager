@@ -3,7 +3,7 @@
   <head>
     <div th:replace="~{partials/headers}" />
 
-    <link th:href="@{/css/main.css}" rel="stylesheet" />
+    <link th:href="@{/css/login.css}" rel="stylesheet" />
 
     <title>My Pet | Registro</title>
   </head>
@@ -18,7 +18,7 @@
       <div class="form__wrapper">
         <form
           action="#"
-          th:action="@{/auth/signup}"
+          th:action="@{/signup}"
           th:object="${dto}"
           method="POST"
         >
@@ -26,6 +26,8 @@
             <img th:src="@{/img/user.svg}" alt="user__icon" />
             <input name="username" placeholder="john_doe_2077" />
           </label>
+
+          <button type="submit" class="label-medium form__submit-btn">SIGNUP</button>
         </form>
       </div>
     </main>

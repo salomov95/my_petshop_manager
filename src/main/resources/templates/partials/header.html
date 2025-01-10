@@ -2,5 +2,12 @@
   <div class="logo">
     <img th:src="@{/img/dog.svg}" alt="paw__svg-icon" />
     <span class="label-medium">MY PET</span>
-  </<div>
+  </div>
+
+  <nav>
+    <a th:if="${isLoggedIn == true}" th:href="@{/logout}">
+      <span th:text="${username}">$USERNAME</span>
+      <img th:src="@{/img/exit.svg}" alt="exit__icon" />
+    </a>
+  </nav>
 </header>

@@ -14,24 +14,24 @@
       </div>
 
       <div class="form__wrapper">
-        <div th:if="${param.logout}" class="label-small form__warn">Logout Successfully.</div>
-
         <form
           th:action="@{/login}"
-          th:object="${dto}"
-          method="POST"
+          method="post"
         >
           <label class="passkey__input-wrapper">
             <img th:src="@{/img/user.svg}" alt="user__icon" />
-            <input name="username" placeholder="john_doe@2077" />
+            <input type="text" name="username" placeholder="john_doe@2077" />
           </label>
 
           <label class="passkey__input-wrapper">
             <img th:src="@{/img/key-multiple.svg}" alt="key-multiple__icon" />
             <input type="password" name="password" placeholder="****************" />
           </label>
+
+          <button type="submit" class="label-medium form__submit-btn">LOGIN</button>
         </form>
-        
+       
+        <div th:if="${param.logout}" class="label-small form__warn">Deslogaste com sucesso.</div>
         <div th:if="${param.error}" class="label-small form__warn">Credenciais Inválidas.</div>
       </div>
     </main>

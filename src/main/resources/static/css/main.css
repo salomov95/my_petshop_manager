@@ -23,7 +23,7 @@ textarea {
   background-color: var(--bg-primary);
   color: var(--ctnt-primary);
 
-  padding: 8px;
+ padding: 8px;
 
   &:focus {
     border-width: 0px;
@@ -254,8 +254,8 @@ textarea {
       grid-area: btn;
 
       & > img {
-        height: 20px;
-        width: 20px;
+        height: 28px;
+        width: 28px;
       }
     }
   }

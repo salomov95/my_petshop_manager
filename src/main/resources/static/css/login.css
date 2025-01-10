@@ -47,10 +47,18 @@ body {
       place-items: center;
 
       gap: 16px;
+
+      & > .form__submit-btn {
+        width: 100%;
+        padding: 8px;
+        background-color: var(--brd-brand);
+        color: var(--ctnt-ternary);
+      }
     }
 
     & .form__warn {
-      margin-top: 4px;
+      width: fit-content;
+      margin: 4px auto;
       color: var(--form-warn);
     }
   }
