@@ -90,7 +90,7 @@ cd my-petshop-manager
 Install/Update the project dependencies using maven global installation or local mvnw:
 
 ```bash
-./mvnw clean install
+mvn clean install
 ```
 
 **03 - Database Setup**
@@ -98,13 +98,13 @@ Install/Update the project dependencies using maven global installation or local
 Before running the application itself, the database must be created, then setup the tables by running the migrations as follows:
 
 ```bash
-./mvnw clean flyway:migrate
+mvn clean flyway:migrate
 ```
 
 **04 - Running the Project**
 
 ```bash
-./mvnw clean spring-boot:run
+:mvn clean spring-boot:run
 ```
 
 Open [http://localhost:8080](http://localhost:8080) in your browser to view the project.
