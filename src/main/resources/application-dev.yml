@@ -1,9 +1,11 @@
 server:
   servlet:
     session:
-      timeout: 60
+      timeout: 60000
 
 spring:
+  # Must Change In Production
+  password-encoder-seed: MY-PET-SUPER-SECRET-SEED
   sql:
     init:
       mode: always

@@ -49,6 +49,10 @@ button {
   }
 }
 
+a {
+  text-decoration: none;
+}
+
 input {
   border: none;
   outline: none;
@@ -67,6 +71,10 @@ input {
 
 header {
   width: 100%;
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
 
   & > .logo {
     max-width: fit-content;
@@ -80,11 +88,37 @@ header {
 
     display: flex;
     gap: 12px;
+
     align-items: center;
     justify-content: center;
 
     & >span {
       color: var(--ctnt-brand);
+    }
+  }
+
+  & > nav {
+    height: fit-content;
+    padding-right: 12px;
+
+    & > a  {
+      color: var(--ctnt-brand);
+
+      display: flex;
+      gap: 10px;
+
+      align-items: center;
+      justify-content: center;
+
+      &:visited, &:active {
+        color: var(--ctnt-brand);
+        filter: brightness(0.68);
+      }
+
+      & > img {
+        height: 28px;
+        width: 28px;
+      }
     }
   }
 }

@@ -1,5 +1,7 @@
 package com.ssdev.mypet.domain.auth;
 
+import java.security.Principal;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
@@ -7,27 +9,44 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@Controller @RequestMapping("/auth")
+@Controller @RequestMapping
 public class AuthController {
   private Logger logger;
 
-  public AuthController() {
+  private final AuthService service;
+
+  public AuthController(AuthService service) {
     this.logger = LoggerFactory.getLogger(AuthController.class);
+    this.service = service;
   }
 
   @GetMapping("/login")
-  public String login(Model model) {
-    AuthLoginDto dto = new AuthLoginDto("");
-    model.addAttribute("dto", dto);
+  public String login(Principal principal) {
+    if (principal != null) {
+      return "redirect:/";
+    }
+
     return "login";
   }
 
-  @PostMapping(path={"/login"}, consumes={MediaType.APPLICATION_FORM_URLENCODED_VALUE})
-  public String login(AuthLoginDto dto) {
-    logger.info("[DEBUG] Passkey: {}", dto.passkey());
-    return "redirect:/";
+  @GetMapping("/signup")
+  public String signup(Model model) {
+    AuthRegisterDto dto = new AuthRegisterDto("");
+    model.addAttribute("dto", dto);
+    return "signup";
+  }
+
+  @PostMapping(path={"/signup"}, consumes={MediaType.APPLICATION_FORM_URLENCODED_VALUE})
+  public String signUp(AuthRegisterDto dto) {
+    try {
+      String rawNewPasskey = service.createUser(dto.username());
+      logger.info("User Created With Passkey: " + rawNewPasskey);
+    } catch(Exception e) {
+      logger.error("Attempt To Register Failed", e);
+      return "redirect:/signup?error=true";
+    }
+    return "redirect:/login";
   }
 }

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <div th:replace="~{partials/headers}" />
+
+    <link th:href="@{/css/login.css}" rel="stylesheet" />
+
+    <title>My Pet | Registro</title>
+  </head>
+  <body>
+    <header th:replace="~{partials/header}" />
+
+    <main class="main-content__wrapper">
+      <div>
+        <h1 class="title">Que bom te conhecer!!</h1>
+      </div>
+
+      <div class="form__wrapper">
+        <form
+          action="#"
+          th:action="@{/signup}"
+          th:object="${dto}"
+          method="POST"
+        >
+          <label class="passkey__input-wrapper">
+            <img th:src="@{/img/user.svg}" alt="user__icon" />
+            <input name="username" placeholder="john_doe_2077" />
+          </label>
+
+          <button type="submit" class="label-medium form__submit-btn">SIGNUP</button>
+        </form>
+      </div>
+    </main>
+
+    <script th:src="@{/js/eruda.js}"></script>
+  </body>
+</html>

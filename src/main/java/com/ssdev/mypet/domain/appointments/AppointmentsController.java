@@ -1,5 +1,6 @@
 package com.ssdev.mypet.domain.appointments;
 
+import java.security.Principal;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
@@ -33,7 +34,15 @@ public class AppointmentsController {
   }
 
   @GetMapping("/")
-  public String listAppointments(Model model, @RequestParam Optional<LocalDate> filter) {
+  public String listAppointments(Principal principal, Model model, @RequestParam Optional<LocalDate> filter) {
+    if (principal != null) {
+      String username = principal.getName();
+      logger.info(String.format("Active Session: %s", username));
+
+      model.addAttribute("username", username);
+      model.addAttribute("isLoggedIn", true);
+    }
+
     LocalDate filter_date = filter.isPresent() ? filter.get() : TODAY;
 
     model.addAttribute("filter_date", filter_date);
@@ -78,7 +87,7 @@ public class AppointmentsController {
     try {
       this.service.cancelAppointment(id);
     } catch(Exception e) {
-      logger.error("[ERROR] " + e.getMessage());
+      logger.error(e.getMessage());
       return "redirect:/not-found";
     }
 
