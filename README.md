@@ -1,8 +1,12 @@
 <div align="center">
   <br />
-    <a href="#" target="_blank">
-      <img src="https://github.com/user-attachments/assets/6cfe12ce-1e1a-428d-8037-90e67e12a66e" alt="Project Banner">
-    </a>
+
+  <a href="#" target="_blank">
+    <img src="https://github.com/user-attachments/assets/b8ab414b-7bed-468f-a3dd-e92212fb3158" alt="Project Banner"/>
+  </a>
+
+  <br />
+  <br />
   <br />
 
   <div>
@@ -12,7 +16,7 @@
     <img src="https://img.shields.io/badge/Flyway-CC0200?logo=flyway&logoColor=fff&style=for-the-badge" alt="Flyway" />
     <img src="https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=fff&style=for-the-badge" alt="Docker" />
   </div>
-<br/><br/></br>
+<br/><br/>
  
   <h1 align="center">My PetShop Manager</h1>
 
@@ -165,18 +169,8 @@ THIRD_PARTY_API_KEY=1234567890abcdef
 
 ## <a name="versions">📅 Release History</a>
 
-- TBD
-
-<!--* 0.2.0
-    * CHANGE: Remove `Biden()`
-    * ADD: Add `feature()`
-* 0.1.1
-    * FIX: Crash when calling `Putin()`
-* 0.1.0
-    * The first proper release
-    * CHANGE: Rename `Elon()` to `Musk()`
-* 0.0.1
-    * Initial work-->
+* 0.0.1  - The initial release.<br />
+  FEAT: Authentication and Appointment Management.
 
 ## <a name="contributing">🤝 Contributing</a>
 
