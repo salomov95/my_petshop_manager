@@ -76,6 +76,8 @@ To use this project you must have previously installed the following packages:
 - [Maven](https://maven.apache.org) (Build Manager)
 - [Docker](https://www.docker.com/) For Future Releases
 
+> Remember to proper setup the environment variables in the aplication-PROFILE.yml files and setup the *active profile* in the resources folder.
+
 **01 - Cloning the Repository**
 
 ```bash
@@ -91,7 +93,15 @@ Install/Update the project dependencies using maven global installation or local
 ./mvnw clean install
 ```
 
-**03 - Running the Project**
+**03 - Database Setup**
+
+Before running the application itself, the database must be created, then setup the tables by running the migrations as follows:
+
+```bash
+./mvnw clean flyway:migrate
+```
+
+**04 - Running the Project**
 
 ```bash
 ./mvnw clean spring-boot:run
@@ -104,68 +114,41 @@ Please, check the port.
 
 - TBD
 
-<!--details>
-<summary><code>.env.local</code></summary>
+<details>
+<summary><code>aplication.yml</code></summary>
 
-```
-# Port where the application will run
-PORT=3000
-
-# Database connection URL
-DATABASE_URL=postgresql://username:password@localhost:5432/mydatabase
-
-# Secret key for generating JWT tokens
-JWT_SECRET=my_super_secret_key
-
-# Base URL for the API
-API_BASE_URL=http://localhost:3000/api
-
-# Execution environment (development, production, test)
-NODE_ENV=development
-
-# Email provider configuration
-EMAIL_HOST=smtp.gmail.com
-EMAIL_PORT=587
-EMAIL_USER=myemail@gmail.com
-EMAIL_PASSWORD=my_email_password
-
-# API key for external service integration
-THIRD_PARTY_API_KEY=1234567890abcdef
+```yml
+# Active Profile - default, dev or production
+spring:
+  profiles:
+    active: dev
 
 ```
 
 </details>
 
 <details>
-<summary><code>.env.development</code></summary>
+<summary><code>application-PROFILE.yml</code></summary>
 
+```yml
+# Session Max Timeout
+server:
+  servlet:
+    session:
+      timeout: 60000
+
+
+spring:
+  # Session Password Encoding
+  password-encoder-seed: MY-PET-SUPER-SECRET-SEED
+
+  # Database Connection
+  datasource:
+    username: # Database Previously Configured Username
+    password: # Database Previously Configured Password
+    url: # Database Previously Configured Connection URL
 ```
-# Port where the application will run
-PORT=3000
-
-# Database connection URL
-DATABASE_URL=postgresql://username:password@localhost:5432/mydatabase
-
-# Secret key for generating JWT tokens
-JWT_SECRET=my_super_secret_key
-
-# Base URL for the API
-API_BASE_URL=http://localhost:3000/api
-
-# Execution environment (development, production, test)
-NODE_ENV=development
-
-# Email provider configuration
-EMAIL_HOST=smtp.gmail.com
-EMAIL_PORT=587
-EMAIL_USER=myemail@gmail.com
-EMAIL_PASSWORD=my_email_password
-
-# API key for external service integration
-THIRD_PARTY_API_KEY=1234567890abcdef
-
-```
-</details-->
+</details>
 
 ## <a name="versions">📅 Release History</a>
 
