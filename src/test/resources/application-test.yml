@@ -3,7 +3,7 @@ spring:
   password-encoder-seed: MY-PET-SUPER-SECRET-SEED
   sql:
     init:
-      mode: always
+      mode: never
   datasource:
     username: my_pet
     password: myPet@123
