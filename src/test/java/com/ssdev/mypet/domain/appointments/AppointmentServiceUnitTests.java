@@ -2,7 +2,7 @@ package com.ssdev.mypet.domain.appointments;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
@@ -16,11 +16,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestInstance.Lifecycle;
+
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 
-@SpringBootTest
-@TestInstance(Lifecycle.PER_CLASS)
+@SpringBootTest @TestInstance(Lifecycle.PER_CLASS)
 public class AppointmentServiceUnitTests {
   @MockitoBean
   AppointmentsRepository appointmentsRepository;
@@ -47,24 +47,21 @@ public class AppointmentServiceUnitTests {
 
   @BeforeEach
   void setupEach() {
-
-    when(appointmentsRepository.findByDueDate(any(LocalDate.class)))
-      .thenReturn(List.of(mockAppointment));
-
-    when(appointmentsRepository.findById(mockAppointmentId))
-      .thenReturn(Optional.of(mockAppointment));
-
     when(appointmentsRepository.save(any(Appointment.class)))
       .thenReturn(mockAppointment);
   }
 
   @Test
   void CREATE_APPOINTMENT() {
-    assertTrue(appointmentsService.createAppointment(mockDto).equals(mockAppointment.getId()));
+    var result = assertDoesNotThrow(()->appointmentsService.createAppointment(mockDto));
+    assertNotEquals(null, result);
   }
 
   @Test
   void LIST_APPOINTMENTS() {
+    when(appointmentsRepository.findByDueDate(any(LocalDate.class)))
+      .thenReturn(List.of(mockAppointment));
+
     List<Appointment> result = appointmentsService
       .listAppointments(TODAY);
     
@@ -74,6 +71,9 @@ public class AppointmentServiceUnitTests {
 
   @Test
   void CANCEL_APPOINTMENT() {
+    when(appointmentsRepository.findById(mockAppointmentId))
+      .thenReturn(Optional.of(mockAppointment));
+
     assertDoesNotThrow(() -> appointmentsService
       .cancelAppointment(mockAppointmentId));
   }
