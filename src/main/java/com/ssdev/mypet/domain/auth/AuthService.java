@@ -3,15 +3,16 @@ package com.ssdev.mypet.domain.auth;
 import java.util.Optional;
 import java.util.UUID;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.ssdev.mypet.domain.auth.dto.AuthLoginDto;
+import com.ssdev.mypet.domain.auth.dto.AuthRegisterDto;
+import com.ssdev.mypet.domain.auth.exception.AuthIllegalOperationException;
+import com.ssdev.mypet.domain.auth.exception.UserNotFoundException;
+
 @Service
 public class AuthService {
-  private Logger logger = LoggerFactory.getLogger(AuthService.class);
   private final UserRepository userRepository;
   private final PasswordEncoder encoder;
 
@@ -31,8 +32,7 @@ public class AuthService {
       userRepository.save(newUser);
       return passkey;
     } catch (Exception e) {
-      logger.info("[ERROR] Error creating user", e);
-      throw new Exception("FAILED WHILE CREATING USER");
+      throw new AuthIllegalOperationException("FAILED WHILE CREATING USER", e);
     }
   }
 
@@ -41,13 +41,13 @@ public class AuthService {
       .findByUsername(dto.username());
 
     if (result.isEmpty()) {
-      throw new Exception("USER NOT FOUND");
+      throw new UserNotFoundException();
     }
 
     User user = result.get();
 
     if (!encoder.matches(dto.password(), user.getPassword())) {
-      throw new Exception("INVALID CREDENTIALS");
+      throw new AuthIllegalOperationException("INVALID CREDENTIALS");
     }
 
     return user;

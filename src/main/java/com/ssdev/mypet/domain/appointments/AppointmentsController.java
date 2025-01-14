@@ -20,6 +20,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.ssdev.mypet.domain.appointments.dto.CreateAppointmentDto;
+import com.ssdev.mypet.domain.appointments.exception.AppointmentIllegalOperationException;
+import com.ssdev.mypet.domain.appointments.exception.AppointmentNotFoundException;
+
 @Controller @RequestMapping
 public class AppointmentsController {
   private final AppointmentsService service;
@@ -77,14 +81,28 @@ public class AppointmentsController {
   }
 
   @PostMapping(path={"/appointments"}, consumes={MediaType.APPLICATION_FORM_URLENCODED_VALUE})
-  public String createAppointment(CreateAppointmentDto dto) throws Exception {
-    this.service.createAppointment(dto);
-    return "redirect:/";
+  public String createAppointment(CreateAppointmentDto dto) {
+    try {
+      this.service.createAppointment(dto);
+      return "redirect:/";
+    } catch(AppointmentIllegalOperationException e) {
+      return "/?error=true&creation-error=true";
+    } catch(Exception e) {
+      return "/?error=true";
+    }
   }
 
   @PostMapping("/appointments/{id}/cancel")
-  public String cancelAppointments(@PathVariable String id) throws Exception  {
-    this.service.cancelAppointment(id);
-    return "redirect:/";
+  public String cancelAppointments(@PathVariable String id)  {
+    try {
+      this.service.cancelAppointment(id);
+      return "redirect:/";
+    } catch(AppointmentIllegalOperationException e) {
+      return "/?error=true&cancelment-error=true";
+    } catch(AppointmentNotFoundException e) {
+      return "/?error=true&cancelment-error=true";
+    } catch(Exception e) {
+      return "/?error=true";
+    }
   }
 }

@@ -7,6 +7,10 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import com.ssdev.mypet.domain.appointments.dto.CreateAppointmentDto;
+import com.ssdev.mypet.domain.appointments.exception.AppointmentIllegalOperationException;
+import com.ssdev.mypet.domain.appointments.exception.AppointmentNotFoundException;
+
 @Service
 public class AppointmentsService {
   private final AppointmentsRepository repository;
@@ -20,7 +24,7 @@ public class AppointmentsService {
       dto.dueDate().isBefore(LocalDate.now()) ||
       dto.dueTime().isBefore(LocalTime.now())
     ) {
-      throw new Exception("CREATE PAST APPOINTMENTS IS NOT ALLOWED");
+      throw new AppointmentIllegalOperationException("CREATE PAST APPOINTMENTS IS NOT ALLOWED");
     }
 
     Appointment appointment = this.repository.save(new Appointment(dto));
@@ -31,7 +35,7 @@ public class AppointmentsService {
     Optional<Appointment> ap = this.repository.findById(appointmentId);
 
     if (ap.isEmpty()) {
-      throw new Exception("Appointment not found");
+      throw new AppointmentNotFoundException();
     }
 
     Appointment appointment = ap.get();
@@ -40,7 +44,7 @@ public class AppointmentsService {
       appointment.getDueDate().isBefore(LocalDate.now()) ||
       appointment.getDueTime().isBefore(LocalTime.now())
     ) {
-      throw new Exception("CANCELL PAST APPOINTMENTS IS NOT ALLOWED");
+      throw new AppointmentIllegalOperationException("CANCELL PAST APPOINTMENTS IS NOT ALLOWED");
     }
 
     appointment.setStatus("APPOINTMENTS.CANCELLED");
