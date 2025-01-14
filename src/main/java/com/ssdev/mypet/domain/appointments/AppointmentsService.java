@@ -1,6 +1,7 @@
 package com.ssdev.mypet.domain.appointments;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,7 +15,14 @@ public class AppointmentsService {
     this.repository = repository;
   }
 
-  public String createAppointment(CreateAppointmentDto dto) {
+  public String createAppointment(CreateAppointmentDto dto) throws Exception {
+    if (
+      dto.dueDate().isBefore(LocalDate.now()) ||
+      dto.dueTime().isBefore(LocalTime.now())
+    ) {
+      throw new Exception("CREATE PAST APPOINTMENTS IS NOT ALLOWED");
+    }
+
     Appointment appointment = this.repository.save(new Appointment(dto));
     return appointment.getId();
   }
@@ -27,6 +35,14 @@ public class AppointmentsService {
     }
 
     Appointment appointment = ap.get();
+
+    if (
+      appointment.getDueDate().isBefore(LocalDate.now()) ||
+      appointment.getDueTime().isBefore(LocalTime.now())
+    ) {
+      throw new Exception("CANCELL PAST APPOINTMENTS IS NOT ALLOWED");
+    }
+
     appointment.setStatus("APPOINTMENTS.CANCELLED");
     repository.save(appointment);
   }

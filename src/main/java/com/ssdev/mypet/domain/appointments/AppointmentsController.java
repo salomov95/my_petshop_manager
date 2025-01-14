@@ -77,20 +77,14 @@ public class AppointmentsController {
   }
 
   @PostMapping(path={"/appointments"}, consumes={MediaType.APPLICATION_FORM_URLENCODED_VALUE})
-  public String createAppointment(CreateAppointmentDto dto) {
+  public String createAppointment(CreateAppointmentDto dto) throws Exception {
     this.service.createAppointment(dto);
     return "redirect:/";
   }
 
   @PostMapping("/appointments/{id}/cancel")
-  public String cancelAppointments(@PathVariable String id) {
-    try {
-      this.service.cancelAppointment(id);
-    } catch(Exception e) {
-      logger.error(e.getMessage());
-      return "redirect:/not-found";
-    }
-
+  public String cancelAppointments(@PathVariable String id) throws Exception  {
+    this.service.cancelAppointment(id);
     return "redirect:/";
   }
 }
