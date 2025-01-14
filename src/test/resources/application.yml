@@ -1,13 +1,13 @@
 server:
   servlet:
     session:
-      timeout: 60000
+      timeout: 10
 
 spring:
   application:
     name: mypet
   profiles:
-    active: dev
+    active: test
   jpa:
     show-sql: true
     hibernate:
