@@ -54,13 +54,14 @@
 
 ## <a name="tech-stack">⚙️ Tech Stack</a>
 
-- Java
-- Spring Boot
-- Spring Security
-- Thymeleaf
-- Hibernate / JPA
-- MySQL
-- Docker - Soon ..
+- [Java](https://www.java.com/en/)
+- [Spring Boot](https://spring.io/projects/spring-boot)
+- [Spring Security](https://spring.io/projects/spring-security)
+- [JUnit5](https://junit.org/junit5/)
+- [Thymeleaf](https://www.thymeleaf.org/)
+- [Spring JPA](https://spring.io/projects/spring-data-jpa)
+- [MySQL](https://www.mysql.com/)
+- [Docker - Soon ..](https://www.docker.com/)
 
 
 ## <a name="quick-start">💻 Quick Start</a>
