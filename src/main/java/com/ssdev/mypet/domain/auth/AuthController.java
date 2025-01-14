@@ -41,7 +41,7 @@ public class AuthController {
   @PostMapping(path={"/signup"}, consumes={MediaType.APPLICATION_FORM_URLENCODED_VALUE})
   public String signUp(AuthRegisterDto dto) {
     try {
-      String rawNewPasskey = service.createUser(dto.username());
+      String rawNewPasskey = service.createUser(dto);
       logger.info("User Created With Passkey: " + rawNewPasskey);
     } catch(Exception e) {
       logger.error("Attempt To Register Failed", e);

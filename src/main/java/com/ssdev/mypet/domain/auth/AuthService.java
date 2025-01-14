@@ -20,12 +20,12 @@ public class AuthService {
     this.encoder = encoder;
   }
 
-  public String createUser(String username) throws Exception {
+  public String createUser(AuthRegisterDto dto) throws Exception {
     try {
       String passkey = generateUUID();
       
       User newUser = new User();
-      newUser.setUsername(username);
+      newUser.setUsername(dto.username());
       newUser.setPassword(encoder.encode(passkey));
 
       userRepository.save(newUser);
@@ -37,9 +37,14 @@ public class AuthService {
   }
 
   public User verifyUser(AuthLoginDto dto) throws Exception {
-    User user = userRepository
-      .findByUsername(dto.username())
-      .orElseThrow(()->new Exception("USER NOT FOUND"));
+    Optional<User> result = userRepository
+      .findByUsername(dto.username());
+
+    if (result.isEmpty()) {
+      throw new Exception("USER NOT FOUND");
+    }
+
+    User user = result.get();
 
     if (!encoder.matches(dto.password(), user.getPassword())) {
       throw new Exception("INVALID CREDENTIALS");
