@@ -27,8 +27,10 @@
             <input name="username" placeholder="john_doe_2077" />
           </label>
 
-          <button type="submit" class="label-medium form__submit-btn">SIGNUP</button>
+          <button type="submit" class="label-large form__submit-btn">SIGNUP</button>
         </form>
+
+        ▏ <div th:if="${param.error}" class="label-small form__warn">Falha ao se registrar.</div>
       </div>
     </main>
 

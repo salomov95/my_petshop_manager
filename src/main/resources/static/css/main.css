@@ -10,7 +10,7 @@ button {
   border-radius: 8px;
 
   background-color: var(--bg-brand);
-  color: var(--bg-primary);
+  color: var(--brd-divisor);
 }
 
 textarea {
@@ -28,6 +28,37 @@ textarea {
   &:focus {
     border-width: 0px;
     outline: 2px solid var(--brd-brand);
+  }
+}
+
+.toast__warn {
+  width: 400px;
+  max-width: 90vw;
+
+  padding: 24px;
+  border-radius: 8px;
+
+  text-align: left;
+
+  background-color: var(--bg-brand);
+  outline: 2px solid var(--brd-divisor);
+
+  display: flex;
+  gap: 20px;
+  align-items: center;
+
+  position: fixed;
+  top: 15lvh;
+  right: -500px;
+
+  animation-name: slide_in_out;
+  animation-duration: 5s;
+  animation-iteration-count: 1;
+  animation-timing-function: ease;
+
+  & > img {
+    height: 40px;
+    width: auto;
   }
 }
 
@@ -189,7 +220,7 @@ textarea {
 
   & button {
     background-color: var(--bg-ternary);
-    color: var(--ctnt-ternary);
+    color: var(--brd-divisor);
 
     &:active, &:hover {
       color: var(--ctnt-brand);
@@ -249,6 +280,7 @@ textarea {
 
     & button {
       background: transparent;
+
       padding: 4px;
 
       grid-area: btn;
@@ -320,6 +352,8 @@ textarea {
       & > button {
         padding: 16px;
         margin-left: auto;
+
+        color: var(--brd-divisor);
       }
     }
   }
@@ -363,5 +397,15 @@ textarea {
   .modal__content {
     display: flex;
     flex-direction: column;
+  }
+}
+
+@keyframes slide_in_out {
+  from, to {
+    right: -500px;
+  }
+
+  10%, 90% {
+    right: 10lvw;
   }
 }

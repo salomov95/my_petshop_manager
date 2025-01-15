@@ -52,14 +52,14 @@ body {
         width: 100%;
         padding: 8px;
         background-color: var(--brd-brand);
-        color: var(--ctnt-ternary);
+        color: var(--brd-divisor);
       }
     }
 
     & .form__warn {
       width: fit-content;
       margin: 4px auto;
-      color: var(--form-warn);
+      color: var(--ctnt-brand);
     }
   }
 }
