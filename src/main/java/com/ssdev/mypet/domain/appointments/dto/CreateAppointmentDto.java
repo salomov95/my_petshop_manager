@@ -1,4 +1,4 @@
-package com.ssdev.mypet.domain.appointments;
+package com.ssdev.mypet.domain.appointments.dto;
 
 import java.time.LocalDate;
 import java.time.LocalTime;

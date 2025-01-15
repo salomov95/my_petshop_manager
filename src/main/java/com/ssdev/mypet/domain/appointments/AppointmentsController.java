@@ -86,9 +86,9 @@ public class AppointmentsController {
       this.service.createAppointment(dto);
       return "redirect:/";
     } catch(AppointmentIllegalOperationException e) {
-      return "/?error=true&creation-error=true";
+      return "redirect:/?error=true&creationerror=true";
     } catch(Exception e) {
-      return "/?error=true";
+      return "redirect:/?error=true&creationerror=true";
     }
   }
 
@@ -98,11 +98,11 @@ public class AppointmentsController {
       this.service.cancelAppointment(id);
       return "redirect:/";
     } catch(AppointmentIllegalOperationException e) {
-      return "/?error=true&cancelment-error=true";
+      return "redirect:/?error=true&cancelmenterror=true";
     } catch(AppointmentNotFoundException e) {
-      return "/?error=true&cancelment-error=true";
+      return "redirect:/?error=true&cancelmenterror=true";
     } catch(Exception e) {
-      return "/?error=true";
+      return "redirect:/?error=true&cancelmenterror=true";
     }
   }
 }

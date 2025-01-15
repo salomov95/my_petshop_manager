@@ -32,7 +32,13 @@ public class AuthController {
   }
 
   @GetMapping("/signup")
-  public String signup(Model model) {
+  public String signup(Principal principal, Model model) {
+    if (principal != null) {
+      String username = principal.getName();
+      model.addAttribute("username", username);
+      model.addAttribute("isLoggedIn", true);
+   }
+
     AuthRegisterDto dto = new AuthRegisterDto("");
     model.addAttribute("dto", dto);
     return "signup";
@@ -43,11 +49,11 @@ public class AuthController {
     try {
       String rawNewPasskey = service.createUser(dto);
       LoggerFactory.getLogger(AuthController.class).info("User Created With Passkey: " + rawNewPasskey);
+      return "redirect:/login";
     } catch(AuthIllegalOperationException e) {
       return "redirect:/signup?error=true";
     } catch(Exception e) {
       return "redirect:/signup?error=true";
     }
-    return "redirect:/login";
   }
 }
