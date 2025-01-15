@@ -1,3 +1,8 @@
 package com.ssdev.mypet.domain.auth.dto;
 
-public record AuthRegisterDto(String username) {}
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
+public record AuthRegisterDto(
+  @NotNull @NotBlank String username
+) {}

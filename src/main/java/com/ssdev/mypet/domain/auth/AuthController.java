@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.ssdev.mypet.domain.auth.dto.AuthRegisterDto;
 import com.ssdev.mypet.domain.auth.exception.AuthIllegalOperationException;
 
+import jakarta.validation.Valid;
+
 @Controller @RequestMapping
 public class AuthController {
   private final AuthService service;
@@ -45,7 +47,7 @@ public class AuthController {
   }
 
   @PostMapping(path={"/signup"}, consumes={MediaType.APPLICATION_FORM_URLENCODED_VALUE})
-  public String signUp(AuthRegisterDto dto) {
+  public String signUp(@Valid AuthRegisterDto dto) {
     try {
       String rawNewPasskey = service.createUser(dto);
       LoggerFactory.getLogger(AuthController.class).info("User Created With Passkey: " + rawNewPasskey);

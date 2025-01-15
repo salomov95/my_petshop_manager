@@ -24,6 +24,11 @@ import com.ssdev.mypet.domain.appointments.dto.CreateAppointmentDto;
 import com.ssdev.mypet.domain.appointments.exception.AppointmentIllegalOperationException;
 import com.ssdev.mypet.domain.appointments.exception.AppointmentNotFoundException;
 
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+
 @Controller @RequestMapping
 public class AppointmentsController {
   private final AppointmentsService service;
@@ -81,7 +86,7 @@ public class AppointmentsController {
   }
 
   @PostMapping(path={"/appointments"}, consumes={MediaType.APPLICATION_FORM_URLENCODED_VALUE})
-  public String createAppointment(CreateAppointmentDto dto) {
+  public String createAppointment(@Valid CreateAppointmentDto dto) {
     try {
       this.service.createAppointment(dto);
       return "redirect:/";
@@ -93,7 +98,7 @@ public class AppointmentsController {
   }
 
   @PostMapping("/appointments/{id}/cancel")
-  public String cancelAppointments(@PathVariable String id)  {
+  public String cancelAppointments(@PathVariable @NotNull @NotEmpty @NotBlank String id)  {
     try {
       this.service.cancelAppointment(id);
       return "redirect:/";

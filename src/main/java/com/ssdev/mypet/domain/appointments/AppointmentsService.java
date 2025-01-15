@@ -20,10 +20,11 @@ public class AppointmentsService {
   }
 
   public String createAppointment(CreateAppointmentDto dto) throws Exception {
-    if (
-      dto.dueDate().isBefore(LocalDate.now()) ||
-      dto.dueTime().isBefore(LocalTime.now())
-    ) {
+    if (dto.dueDate().isBefore(LocalDate.now())) {
+      throw new AppointmentIllegalOperationException("CREATE PAST APPOINTMENTS IS NOT ALLOWED");
+    }
+
+    if (dto.dueTime().isBefore(LocalTime.now())) {
       throw new AppointmentIllegalOperationException("CREATE PAST APPOINTMENTS IS NOT ALLOWED");
     }
 
