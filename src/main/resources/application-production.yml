@@ -1,0 +1,9 @@
+spring:
+  password-encoder-seed: ${PASSWORD_ENCODER_SECRET_SEED}
+  sql:
+    init:
+      mode: never
+  datasource:
+    username: ${DATABASE_USERNAME}
+    password: ${DATABASE_PASSWORD}
+    url: ${DATABASE_URL}
