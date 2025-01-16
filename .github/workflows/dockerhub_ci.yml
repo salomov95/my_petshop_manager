@@ -1,0 +1,20 @@
+name: dockerhub_ci
+
+on:
+  pull_request:
+    types:
+      - closed
+
+jobs:
+  closed_pr_with_merge:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+      - name: echo
+        run: echo "closed and merged pr"
+  closed_pr_without_merge:
+    if: github.event.pull_request.merged == false
+    runs-on: ubuntu-latest
+    steps:
+      - name: echo
+        run: echo "closed pr without merge"
