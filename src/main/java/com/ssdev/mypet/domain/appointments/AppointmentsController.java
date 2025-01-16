@@ -1,5 +1,10 @@
 package com.ssdev.mypet.domain.appointments;
 
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+
 import java.security.Principal;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -7,41 +12,27 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ssdev.mypet.domain.appointments.dto.CreateAppointmentDto;
-import com.ssdev.mypet.domain.appointments.exception.AppointmentIllegalOperationException;
-import com.ssdev.mypet.domain.appointments.exception.AppointmentNotFoundException;
-
-import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
 
 @Controller @RequestMapping
 public class AppointmentsController {
   private final AppointmentsService service;
-  private final Logger logger;
 
   @DateTimeFormat(pattern="yyyy-MM-dd")
   private final LocalDate TODAY = LocalDate.now();
 
   public AppointmentsController(AppointmentsService service) {
     this.service = service;
-    this.logger = LoggerFactory.getLogger(AppointmentsController.class);
   }
 
   @GetMapping("/")
@@ -86,49 +77,14 @@ public class AppointmentsController {
   }
 
   @PostMapping(path={"/appointments"}, consumes={MediaType.APPLICATION_FORM_URLENCODED_VALUE})
-  public String createAppointment(@Valid CreateAppointmentDto dto) {
-    try {
-      this.service.createAppointment(dto);
-      return "redirect:/";
-    } catch(Exception e) {
-      logger.error(e.getClass().getName(), e.getLocalizedMessage());
-      return "redirect:/?error=true&creationerror=true";
-    }
+  public String createAppointment(@Valid CreateAppointmentDto dto) throws Exception {
+    this.service.createAppointment(dto);
+    return "redirect:/";
   }
 
   @PostMapping("/appointments/{id}/cancel")
-  public String cancelAppointments(@PathVariable @NotNull @NotEmpty @NotBlank String id)  {
-    try {
-      this.service.cancelAppointment(id);
-      return "redirect:/";
-    } catch(Exception e) {
-      logger.error(e.getClass().getName(), e.getLocalizedMessage());
-      return "redirect:/?error=true&cancelmenterror=true";
-    }
-  }
-
-  @ExceptionHandler({ AppointmentIllegalOperationException.class })
-  public String appointmentIllegalOperationExceptionHandler(AppointmentIllegalOperationException e) {
-    logger.error(e.getClass().getName(), e.getLocalizedMessage());
-    switch(e.getMessage()) {
-      case "CREATE PAST APPOINTMENTS IS NOT ALLOWED":
-        return "redirect:/?error=true&creationerror=true";
-      case "CANCELL PAST APPOINTMENTS IS NOT ALLOWED":
-        return "redirect:/?error=true&cancelmenterror=true";
-     default:
-        return "redirect:/?error=true&internalservererror=true";
-    }
-  }
-
-  @ExceptionHandler({ MethodArgumentNotValidException.class })
-  public String methodArgumentNotValidExceptionHandler(MethodArgumentNotValidException e) {
-    logger.error(e.getClass().getName(), e.getLocalizedMessage());
-    return "redirect:/?error=true&creationerror=true";
-  }
-
-  @ExceptionHandler({ AppointmentNotFoundException.class})
-  public String appointmentNotFoundExceptionHandler(AppointmentNotFoundException e) {
-    logger.error(e.getClass().getName(), e.getLocalizedMessage());
-    return "redirect:/?error=true&cancelmenterror=true";
+  public String cancelAppointments(@PathVariable @NotNull @NotEmpty @NotBlank String id) throws Exception {
+    this.service.cancelAppointment(id);
+    return "redirect:/";
   }
 }
