@@ -1,14 +1,16 @@
 package com.ssdev.mypet.domain.appointments;
 
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+
 import java.security.Principal;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.MediaType;
@@ -20,25 +22,23 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.ssdev.mypet.domain.appointments.dto.CreateAppointmentDto;
+
 @Controller @RequestMapping
 public class AppointmentsController {
   private final AppointmentsService service;
-  private final Logger logger;
 
   @DateTimeFormat(pattern="yyyy-MM-dd")
   private final LocalDate TODAY = LocalDate.now();
 
   public AppointmentsController(AppointmentsService service) {
     this.service = service;
-    this.logger = LoggerFactory.getLogger(AppointmentsController.class);
   }
 
   @GetMapping("/")
   public String listAppointments(Principal principal, Model model, @RequestParam Optional<LocalDate> filter) {
     if (principal != null) {
       String username = principal.getName();
-      logger.info(String.format("Active Session: %s", username));
-
       model.addAttribute("username", username);
       model.addAttribute("isLoggedIn", true);
     }
@@ -77,13 +77,13 @@ public class AppointmentsController {
   }
 
   @PostMapping(path={"/appointments"}, consumes={MediaType.APPLICATION_FORM_URLENCODED_VALUE})
-  public String createAppointment(CreateAppointmentDto dto) throws Exception {
+  public String createAppointment(@Valid CreateAppointmentDto dto) throws Exception {
     this.service.createAppointment(dto);
     return "redirect:/";
   }
 
   @PostMapping("/appointments/{id}/cancel")
-  public String cancelAppointments(@PathVariable String id) throws Exception  {
+  public String cancelAppointments(@PathVariable @NotNull @NotEmpty @NotBlank String id) throws Exception {
     this.service.cancelAppointment(id);
     return "redirect:/";
   }

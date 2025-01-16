@@ -16,6 +16,8 @@ import org.junit.jupiter.api.TestInstance.Lifecycle;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 
+import com.ssdev.mypet.domain.appointments.dto.CreateAppointmentDto;
+
 @SpringBootTest @TestInstance(Lifecycle.PER_CLASS)
 class AppointmentCreationTest {
   @MockitoBean

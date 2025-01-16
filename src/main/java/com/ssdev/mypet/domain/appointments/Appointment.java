@@ -15,6 +15,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import com.ssdev.mypet.domain.appointments.dto.CreateAppointmentDto;
+
 @Getter @Setter @AllArgsConstructor @NoArgsConstructor
 @Table(name="tb_appointments") @Entity
 public class Appointment {
