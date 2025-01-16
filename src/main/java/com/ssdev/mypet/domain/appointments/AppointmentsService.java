@@ -20,12 +20,13 @@ public class AppointmentsService {
   }
 
   public String createAppointment(CreateAppointmentDto dto) throws Exception {
+    final String EXCEPTION_MESSAGE = "CREATE PAST APPOINTMENTS IS NOT ALLOWED";
     if (dto.dueDate().isBefore(LocalDate.now())) {
-      throw new AppointmentIllegalOperationException("CREATE PAST APPOINTMENTS IS NOT ALLOWED");
+      throw new AppointmentIllegalOperationException(EXCEPTION_MESSAGE);
     }
 
     if (dto.dueTime().isBefore(LocalTime.now())) {
-      throw new AppointmentIllegalOperationException("CREATE PAST APPOINTMENTS IS NOT ALLOWED");
+      throw new AppointmentIllegalOperationException(EXCEPTION_MESSAGE);
     }
 
     Appointment appointment = this.repository.save(new Appointment(dto));
@@ -41,11 +42,13 @@ public class AppointmentsService {
 
     Appointment appointment = ap.get();
 
-    if (
-      appointment.getDueDate().isBefore(LocalDate.now()) ||
-      appointment.getDueTime().isBefore(LocalTime.now())
-    ) {
-      throw new AppointmentIllegalOperationException("CANCELL PAST APPOINTMENTS IS NOT ALLOWED");
+    final String EXCEPTION_MESSAGE = "CANCELL PAST APPOINTMENTS IS NOT ALLOWED";
+    if (appointment.getDueDate().isBefore(LocalDate.now())) {
+      throw new AppointmentIllegalOperationException(EXCEPTION_MESSAGE);
+    }
+
+    if (appointment.getDueTime().isBefore(LocalTime.now())) {
+      throw new AppointmentIllegalOperationException(EXCEPTION_MESSAGE);
     }
 
     appointment.setStatus("APPOINTMENTS.CANCELLED");

@@ -54,6 +54,11 @@
           <img th:src="@{/img/warn.svg}" alt="warn__icon" />
           <span class="label-large">Falha ao cancelar agendamento.</span>
         </div>
+
+        <div aria-roledescription="toast" th:if="${param.internalservererror}" class="toast__warn">
+          <img th:src="@{/img/warn.svg}" alt="warn__icon" />
+          <span class="label-large">Internal Server Error!</span>
+        </div>
       </div>
     </main>
 

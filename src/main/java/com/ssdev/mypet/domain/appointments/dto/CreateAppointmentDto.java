@@ -13,6 +13,6 @@ public record CreateAppointmentDto(
   @NotNull @NotBlank @NotEmpty String petName,
   @NotNull @NotBlank @NotEmpty String descriptor,
   @NotNull @FutureOrPresent LocalDate dueDate,
-  @NotNull @FutureOrPresent LocalTime dueTime,
+  @NotNull LocalTime dueTime,
   @NotNull @NotBlank @NotEmpty String contactPhone
 ) {}

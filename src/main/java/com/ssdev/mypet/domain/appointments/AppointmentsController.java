@@ -15,6 +15,8 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -46,8 +48,6 @@ public class AppointmentsController {
   public String listAppointments(Principal principal, Model model, @RequestParam Optional<LocalDate> filter) {
     if (principal != null) {
       String username = principal.getName();
-      logger.info(String.format("Active Session: %s", username));
-
       model.addAttribute("username", username);
       model.addAttribute("isLoggedIn", true);
     }
@@ -90,9 +90,8 @@ public class AppointmentsController {
     try {
       this.service.createAppointment(dto);
       return "redirect:/";
-    } catch(AppointmentIllegalOperationException e) {
-      return "redirect:/?error=true&creationerror=true";
     } catch(Exception e) {
+      logger.error(e.getClass().getName(), e.getLocalizedMessage());
       return "redirect:/?error=true&creationerror=true";
     }
   }
@@ -102,12 +101,34 @@ public class AppointmentsController {
     try {
       this.service.cancelAppointment(id);
       return "redirect:/";
-    } catch(AppointmentIllegalOperationException e) {
-      return "redirect:/?error=true&cancelmenterror=true";
-    } catch(AppointmentNotFoundException e) {
-      return "redirect:/?error=true&cancelmenterror=true";
     } catch(Exception e) {
+      logger.error(e.getClass().getName(), e.getLocalizedMessage());
       return "redirect:/?error=true&cancelmenterror=true";
     }
+  }
+
+  @ExceptionHandler({ AppointmentIllegalOperationException.class })
+  public String appointmentIllegalOperationExceptionHandler(AppointmentIllegalOperationException e) {
+    logger.error(e.getClass().getName(), e.getLocalizedMessage());
+    switch(e.getMessage()) {
+      case "CREATE PAST APPOINTMENTS IS NOT ALLOWED":
+        return "redirect:/?error=true&creationerror=true";
+      case "CANCELL PAST APPOINTMENTS IS NOT ALLOWED":
+        return "redirect:/?error=true&cancelmenterror=true";
+     default:
+        return "redirect:/?error=true&internalservererror=true";
+    }
+  }
+
+  @ExceptionHandler({ MethodArgumentNotValidException.class })
+  public String methodArgumentNotValidExceptionHandler(MethodArgumentNotValidException e) {
+    logger.error(e.getClass().getName(), e.getLocalizedMessage());
+    return "redirect:/?error=true&creationerror=true";
+  }
+
+  @ExceptionHandler({ AppointmentNotFoundException.class})
+  public String appointmentNotFoundExceptionHandler(AppointmentNotFoundException e) {
+    logger.error(e.getClass().getName(), e.getLocalizedMessage());
+    return "redirect:/?error=true&cancelmenterror=true";
   }
 }
