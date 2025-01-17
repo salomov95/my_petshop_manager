@@ -4,6 +4,8 @@ spring:
   sql:
     init:
       mode: always
+  jpa:
+    show-sql: true
   datasource:
     username: my_pet
     password: myPet@123

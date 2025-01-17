@@ -1,17 +1,5 @@
-server:
-  servlet:
-    session:
-      timeout: 10
-
 spring:
-  application:
-    name: mypet
   profiles:
     active: test
-  jpa:
-    show-sql: true
-    hibernate:
-      ddl-auto: validate
-    open-in-view: false
-  session:
-    store-type: jdbc
+  flyway:
+    enabled: false

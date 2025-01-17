@@ -1,10 +1,20 @@
 spring:
+  application:
+    name: mypet
   # Must Change In Production
   password-encoder-seed: MY-PET-SUPER-SECRET-SEED
   sql:
     init:
       mode: never
+  jpa:
+    defer-datasource-initialization: true
+    database-platform: org.hibernate.dialect.H2Dialect
+    show-sql: false
+    hibernate:
+      ddl-auto: none
+    open-in-view: false
   datasource:
-    username: my_pet
-    password: myPet@123
-    url: jdbc:mysql://localhost:3306/my_pet
+    driverClassName: org.h2.Driver
+    username: my_pet_test
+    password: my_pet_yest_123
+    url: jdbc:h2:mem:public

@@ -16,7 +16,7 @@ INSERT INTO tb_appointments (
   'MION',
   'Salomov M.',
   'Vermifugaçao',
-  '2025-01-05',
+  '2025-01-20',
   '14:56:00',
   '(92) 9-9482-5428',
   'APPOINTMENTS.PENDING'
@@ -25,7 +25,7 @@ INSERT INTO tb_appointments (
   'PLUTO',
   'John D.',
   'Vacinação',
-  '2025-01-05',
+  '2025-01-20',
   '13:24:00',
   '(92) 9-9542-1015',
   'APPOINTMENTS.PENDING'
@@ -34,7 +34,7 @@ INSERT INTO tb_appointments (
   'MUSTAFFA',
   'Jhanette D.',
   'Banho e Tosa',
-  '2025-01-05',
+  '2025-01-20',
   '09:35:00',
   '(92) 9-9422-7530',
   'APPOINTMENTS.CANCELLED'
@@ -43,7 +43,7 @@ INSERT INTO tb_appointments (
   'ENTROPIA',
   'P. H. Pedro',
   'Banho e Tosa',
-  '2025-01-05',
+  '2025-01-20',
   '18:15:00',
   '(92) 9-8155-1325',
   'APPOINTMENTS.ATTENDED'
@@ -54,3 +54,4 @@ INSERT INTO tb_users (id, username, password)  VALUES (
   "salomovs95",
   "$2a$12$g.edMMvLLTODGkTavD/4GOKc/V/vS7rF4pcGfX38ycrSOFqPeVuny"
 );
+
