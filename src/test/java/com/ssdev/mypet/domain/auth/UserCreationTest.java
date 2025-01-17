@@ -10,11 +10,10 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestInstance.Lifecycle;
-
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 
+import org.springframework.boot.test.context.SpringBootTest;
 import com.ssdev.mypet.domain.auth.dto.AuthRegisterDto;
 
 @SpringBootTest @TestInstance(Lifecycle.PER_CLASS)
