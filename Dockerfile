@@ -5,7 +5,7 @@ ENV DATABASE_USERNAME=${DATABASE_USERNAME}
 ENV DATABASE_PASSWORD=${DATABASE_PASSWORD}
 WORKDIR /build
 COPY . .
-RUN mvn clean package
+RUN mvn clean -Dspring.profiles.active="test" package
 
 FROM base
 ENV DATABASE_URL=${DATABASE_URL}
