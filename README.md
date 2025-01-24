@@ -61,7 +61,7 @@
 - [Thymeleaf](https://www.thymeleaf.org/)
 - [Spring JPA](https://spring.io/projects/spring-data-jpa)
 - [MySQL](https://www.mysql.com/)
-- [Docker - Soon ..](https://www.docker.com/)
+- [Docker](https://www.docker.com/)
 
 
 ## <a name="quick-start">💻 Quick Start</a>
@@ -75,7 +75,7 @@ To use this project you must have previously installed the following packages:
 - [Git](https://git-scm.com/)
 - [Java JDK or Open-JDK](https://openjdk.org/) - Version 17 or above
 - [Maven](https://maven.apache.org) (Build Manager)
-- [Docker](https://www.docker.com/) For Future Releases
+- [Docker](https://www.docker.com/)
 
 > Remember to proper setup the environment variables in the aplication-PROFILE.yml files and setup the *active profile* in the resources folder.
 
