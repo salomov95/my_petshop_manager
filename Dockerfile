@@ -8,9 +8,10 @@ COPY . /build
 RUN mvn clean -Dspring.profiles.active="test" package
 
 FROM openjdk:17-slim
+ARG FINAL_JAR="com.ssdev.mypet_0.1.0.jar"
 ENV DATABASE_URL=${DATABASE_URL}
 ENV DATABASE_NAME=${DATABASE_NAME}
 ENV DATABASE_USERNAME=${DATABASE_USERNAME}
 ENV DATABASE_PASSWORD=${DATABASE_PASSWORD}
-COPY --from=base /build/target/com.ssdev.mypet_*.jar .
-CMD ["java", "-Dspring.profiles.active=production", "-jar", "com.ssdev.mypet_*.jar"]
+COPY --from=base /build/target/${FINAL_JAR} ./${FINAL_JAR}
+CMD ["java", "-Dspring.profiles.active=production", "-jar", "./${FINAL_JAR}"]
