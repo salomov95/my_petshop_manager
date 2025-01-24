@@ -1,0 +1,37 @@
+name: My Petshop Manager
+
+services:
+  database:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: my_petshop_manager
+      MYSQL_USER: my-pet
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - /var/lib/mysql/:/var/lib/mysql
+    networks:
+      - petshop-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p$$MYSQL_ROOT_PASSWORD"]
+      interval: 5s
+      timeout: 10s
+      retries: 3
+
+  spring-app:
+    build:
+      context: .
+    depends_on:
+      database:
+        condition: service_healthy
+    environment:
+      DB_NAME: my_petshop_manager
+      DB_USERNAME: my-pet
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_URL: jdbc:mysql://database:3306/my_petshop_manager
+    networks:
+      - petshop-network
+
+networks:
+  petshop-network:
+    driver: bridge
