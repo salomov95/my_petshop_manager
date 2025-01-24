@@ -19,16 +19,18 @@ services:
       retries: 3
 
   spring-app:
-    build:
-      context: .
     depends_on:
       database:
         condition: service_healthy
+    build:
+      context: .
     environment:
-      DB_NAME: my_petshop_manager
-      DB_USERNAME: my-pet
-      DB_PASSWORD: ${DB_PASSWORD}
-      DB_URL: jdbc:mysql://database:3306/my_petshop_manager
+      PASSWORD_ENCODER_SECRET_SEED: ${ENCODER_SECRET}
+      DATABASE_USERNAME: my-pet
+      DATABASE_PASSWORD: ${DB_PASSWORD}
+      DATABASE_URL: jdbc:mysql://database:3306/my_petshop_manager
+    ports:
+      - 8080:8080
     networks:
       - petshop-network
 
