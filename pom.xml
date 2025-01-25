@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.ssdev</groupId>
 	<artifactId>mypet</artifactId>
-	<version>0.1.0</version>
+	<version>0.1.25</version>
 	<name>My Pet</name>
 	<description>A PetShop Management System</description>
 	<url/>
