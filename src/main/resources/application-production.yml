@@ -1,4 +1,6 @@
 spring:
+  flyway:
+    enabled: false
   password-encoder-seed: ${PASSWORD_ENCODER_SECRET_SEED}
   sql:
     init:
@@ -8,4 +10,4 @@ spring:
   datasource:
     username: ${DATABASE_USERNAME}
     password: ${DATABASE_PASSWORD}
-    url: ${DATABASE_URL}
+    url: jdbc:postgresql://dpg-cua22opopnds73e9p610-a.oregon-postgres.render.com/${DATABASE_NAME}
