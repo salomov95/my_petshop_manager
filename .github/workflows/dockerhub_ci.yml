@@ -39,4 +39,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: salomovs95/my-petshop-manager:latest,salomovs95/my-petshop-manager:0.1.0
+          tags: salomovs95/my-petshop-manager:latest,salomovs95/my-petshop-manager:0.1.25
