@@ -1,36 +1,42 @@
 name: My Petshop Manager
 
+# Development Only Compose File
 services:
   database:
-    image: mysql
+    image: postgres:16
     restart: always
     environment:
-      MYSQL_DATABASE: my_petshop_manager
-      MYSQL_USER: my-pet
-      MYSQL_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: my_petshop
+      POSTGRES_USER: my_pet
+      POSTGRES_PASSWORD: my_pet@123
     volumes:
-      - /var/lib/mysql/:/var/lib/mysql
+      - pgdata:/var/lib/postgresql/data
     networks:
       - petshop-network
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p$$MYSQL_ROOT_PASSWORD"]
+      test: ["CMD-SHELL", "pg_isready"]
       interval: 5s
       timeout: 10s
       retries: 3
 
   spring-app:
-    build:
-      context: .
     depends_on:
       database:
         condition: service_healthy
+    build:
+      context: .
     environment:
-      DB_NAME: my_petshop_manager
-      DB_USERNAME: my-pet
-      DB_PASSWORD: ${DB_PASSWORD}
-      DB_URL: jdbc:mysql://database:3306/my_petshop_manager
+      PASSWORD_ENCODER_SECRET_SEED: jSniwziJed8ajw8sx8bw$2i29Han29ej-a
+      DATABASE_USERNAME: my_pet
+      DATABASE_PASSWORD: my_pet@123
+      DATABASE_URL: jdbc:postgresql://database:5432/my_petshop
+    ports:
+      - 8080:8080
     networks:
       - petshop-network
+
+volumes:
+  pgdata:
 
 networks:
   petshop-network:

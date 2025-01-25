@@ -7,7 +7,7 @@ spring:
   application:
     name: mypet
   profiles:
-    active: dev
+    active: production
   jpa:
     hibernate:
       ddl-auto: validate
