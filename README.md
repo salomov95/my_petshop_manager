@@ -12,7 +12,7 @@
   <div>
     <img src="https://img.shields.io/badge/Spring%20Boot-6DB33F?logo=springboot&logoColor=fff&style=for-the-badge" alt="Java" />
     <img src="https://img.shields.io/badge/Thymeleaf-%23005C0F.svg?style=for-the-badge&logo=Thymeleaf&logoColor=white" alt="Thymeleaf" />
-    <img src="https://img.shields.io/badge/MySQL-4479A1?logo=mysql&logoColor=fff&style=for-the-badge" alt="MySQL" />
+    <img src="https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white" alt="PostgreSQL" />
     <img src="https://img.shields.io/badge/Flyway-CC0200?logo=flyway&logoColor=fff&style=for-the-badge" alt="Flyway" />
     <img src="https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=fff&style=for-the-badge" alt="Docker" />
   </div>
@@ -55,12 +55,13 @@
 ## <a name="tech-stack">⚙️ Tech Stack</a>
 
 - [Java](https://www.java.com/en/)
+- [Maven](https://maven.apache.org)
 - [Spring Boot](https://spring.io/projects/spring-boot)
 - [Spring Security](https://spring.io/projects/spring-security)
 - [JUnit5](https://junit.org/junit5/)
 - [Thymeleaf](https://www.thymeleaf.org/)
 - [Spring JPA](https://spring.io/projects/spring-data-jpa)
-- [MySQL](https://www.mysql.com/)
+- [PostgreSQL](https://www.postgresql.org/)
 - [Docker](https://www.docker.com/)
 
 
@@ -73,11 +74,9 @@ Follow these steps to set up the project locally on your machine.
 To use this project you must have previously installed the following packages:
 
 - [Git](https://git-scm.com/)
-- [Java JDK or Open-JDK](https://openjdk.org/) - Version 17 or above
-- [Maven](https://maven.apache.org) (Build Manager)
 - [Docker](https://www.docker.com/)
 
-> Remember to proper setup the environment variables in the aplication-PROFILE.yml files and setup the *active profile* in the resources folder.
+> Not using Docker? See [HOW_TO_RUN.md](HOW_TO_RUN.md) for further instructions.
 
 **01 - Cloning the Repository**
 
@@ -86,32 +85,18 @@ git clone https://github.com/salomov95/my_petshop_manager
 cd my-petshop-manager
 ```
 
-**02 - Installation**
-
-Install/Update the project dependencies using maven global installation or local mvnw:
+**02 - Running the Project**
 
 ```bash
-mvn clean install
-```
-
-**03 - Database Setup**
-
-Before running the application itself, the database must be created, then setup the tables by running the migrations as follows:
-
-```bash
-mvn clean flyway:migrate
-```
-
-**04 - Running the Project**
-
-```bash
-:mvn clean spring-boot:run
+docker compose up -d
 ```
 
 Open [http://localhost:8080](http://localhost:8080) in your browser to view the project.
 Please, check the port.
 
 ## <a name="envs">💾 Environment Variables</a>
+
+> IF RUNNING ON DOCKER, NO MANUAL SETUP IS NEEDED, ONE CAN SKIP THIS SECTION!
 
 <details>
 <summary><code>aplication.yml</code></summary>
@@ -153,6 +138,10 @@ spring:
 
 * 0.0.1  - The initial release.<br />
   FEAT: Authentication and Appointment Management.
+* 0.1.0  - First containerized release.<br />
+  FEAT: Includes Dockerfile based builds, automated tests and first publishing.
+* 0.1.25 - Latest release
+  FEAT: Inlcudes deployment, CI actions, all chore features integrated.
 
 ## <a name="contributing">🤝 Contributing</a>
 
